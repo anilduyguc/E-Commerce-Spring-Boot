@@ -24,4 +24,10 @@ public class CategoryController {
         return new ResponseEntity<>(categoryService.findAllCategories(), HttpStatus.OK);
     }
 
+    @PostMapping("/update/{categoryId}")
+    public ResponseEntity<Category> updateCategory(@PathVariable String categoryId, @RequestBody Category category){
+        return new ResponseEntity<>(categoryService.updateCategory(category, categoryId), HttpStatus.OK);
+    }
+
+
 }

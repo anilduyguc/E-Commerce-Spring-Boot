@@ -19,4 +19,13 @@ public class CategoryService {
     public List<Category> findAllCategories() {
         return categoryRepository.findAll();
     }
+
+    public Category updateCategory(Category category, String categoryId) {
+        Category category1 = categoryRepository.findById(Integer.parseInt(categoryId))
+                .orElseThrow(() -> new RuntimeException("Category does not exist with id: " + categoryId));
+        category1.setCategoryName(category.getCategoryName());
+        category1.setDescription(category.getDescription());
+        category1.setImageUrl(category.getImageUrl());
+        return categoryRepository.save(category1);
+    }
 }
