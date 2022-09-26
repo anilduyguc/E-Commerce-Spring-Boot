@@ -43,7 +43,7 @@ public class ProductService {
         return productDtos;
     }
 
-    private ProductDto mapToDto(Product product) {
+    public ProductDto mapToDto(Product product) {
         ProductDto productDto = new ProductDto();
         productDto.setId(product.getId());
         productDto.setDescription(product.getDescription());

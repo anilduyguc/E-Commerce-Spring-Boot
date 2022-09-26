@@ -20,7 +20,7 @@ public class Category {
     private @NotBlank String categoryName;
     private @NotBlank String description;
     private @NotBlank String imageUrl;
-    @OneToMany(mappedBy = "category")
-    private List<Product> products;
+//    @OneToMany(mappedBy = "category")
+//    private List<Product> products;
 
 }
