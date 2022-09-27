@@ -1,6 +1,7 @@
 package com.mrkenobii.ecommerceapp.service;
 
 import com.mrkenobii.ecommerceapp.dto.ProductDto;
+import com.mrkenobii.ecommerceapp.exception.ProductNotExistException;
 import com.mrkenobii.ecommerceapp.model.Category;
 import com.mrkenobii.ecommerceapp.model.Product;
 import com.mrkenobii.ecommerceapp.repository.CategoryRepository;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -67,5 +69,13 @@ public class ProductService {
         product.setCategory(category);
         productRepository.save(product);
         return mapToDto(product);
+    }
+
+    public Product findById(Integer productId) {
+        Optional<Product> product = productRepository.findById(productId);
+        if(product.isEmpty()){
+            throw new ProductNotExistException("Product is not valid " +productId);
+        }
+        return product.get();
     }
 }
