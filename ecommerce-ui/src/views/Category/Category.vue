@@ -18,27 +18,20 @@
 
 <script>
 
-import axios from 'axios';
 import CategoryBox from "@/components/Category/CategoryBox";
 export default {
   name: "ViewCategory",
+  props: ["categories"],
   components: { CategoryBox },
   data() {
     return {
       baseURL:"http://localhost:8080/api/v1",
-      categories: [],
     };
   },
   methods: {
-    async getCategories() {
-      await axios
-          .get(`${this.baseURL}/category/list`)
-          .then((res) => (this.categories = res.data))
-          .catch((err) => console.log(err));
-    },
   },
   mounted() {
-    this.getCategories();
+
   },
 };
 </script>
