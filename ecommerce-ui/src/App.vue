@@ -1,10 +1,10 @@
 <template>
   <Navbar />
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view :baseUrl="baseUrl" :categories="categories" :products="products">
+  <router-view v-if="products && categories"
+               :baseUrl="baseUrl"
+               :categories="categories"
+               :products="products"
+               @fetchData="fetchData">
 
   </router-view>
 </template>
@@ -17,8 +17,8 @@ export default {
   data(){
     return {
       baseUrl: "http://localhost:8080/api/v1",
-      products: [],
-      categories: []
+      products: null,
+      categories: null
     }
   },
   methods: {
