@@ -7,6 +7,8 @@ import ProductView from "@/views/Product/ProductView";
 import AddProduct from "@/views/Product/AddProduct";
 import EditCategory from "@/views/Category/EditCategory";
 import EditProduct from "@/views/Product/EditProduct";
+import ShowDetails from "@/views/Product/ShowDetails";
+import ListProducts from "@/views/Category/ListProducts";
 
 const routes = [
   {
@@ -15,12 +17,9 @@ const routes = [
     component: HomeView
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    path: '/category/view/:id',
+    name: 'ListProducts',
+    component: ListProducts
   },
   {
     path: '/admin/category/add',
@@ -56,6 +55,11 @@ const routes = [
     path: '/admin/product/edit/:id',
     name: 'EditProduct',
     component: EditProduct
+  },
+  {
+    path: '/product/view/:id',
+    name: 'ShowDetails',
+    component: ShowDetails
   },
 ]
 

@@ -4,16 +4,17 @@
                :baseUrl="baseUrl"
                :categories="categories"
                :products="products"
-               @fetchData="fetchData">
-
+               @fetchData="fetchData" style="min-height: 60vh">
   </router-view>
+  <footer-view></footer-view>
 </template>
 
 <script>
 import Navbar from "@/components/Navbar";
 import axios from "axios";
+import FooterView from "@/components/Footer";
 export default {
-  components: { Navbar },
+  components: {FooterView, Navbar },
   data(){
     return {
       baseUrl: "http://localhost:8080/api/v1",
