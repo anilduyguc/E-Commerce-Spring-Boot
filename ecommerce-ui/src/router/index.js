@@ -9,6 +9,7 @@ import EditCategory from "@/views/Category/EditCategory";
 import EditProduct from "@/views/Product/EditProduct";
 import ShowDetails from "@/views/Product/ShowDetails";
 import ListProducts from "@/views/Category/ListProducts";
+import SignupView from "@/views/SignupView";
 
 const routes = [
   {
@@ -61,6 +62,12 @@ const routes = [
     name: 'ShowDetails',
     component: ShowDetails
   },
+  {
+    path: '/signup',
+    name: 'SignupView',
+    component: SignupView
+  },
+
 ]
 
 const router = createRouter({

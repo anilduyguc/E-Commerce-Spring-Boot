@@ -13,7 +13,7 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <!--      Search Bar-->
-      <form class="form-inline ml-auto mr-auto">
+      <form class="form-inline ms-auto me-auto">
         <div class="input-group">
           <input size="100" type="text" class="form-control" placeholder="Search Items" aria-label="Username" aria-describedby="basic-addon1">
           <div class="input-group-prepend">
@@ -25,12 +25,19 @@
           </div>
         </div>
       </form>
-      <div>
-        <router-link style="color: white" :to="{name : 'Admin'}">
-          Admin
-        </router-link>
-      </div>
+
     </div>
+    <ul class="navbar-nav me-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbar-account" data-toggle="dropdown">Account</a>
+        <div class="dropdown-menu" aria-labelledby="navbar-account">
+          <router-link  :to="{name: 'SignupView'}" class="dropdown-item">SignUp</router-link>
+          <router-link  :to="{name: 'SignupView'}" class="dropdown-item">SignIn</router-link>
+        </div>
+      </li>
+    </ul>
+
+
   </nav>
 
 </template>
