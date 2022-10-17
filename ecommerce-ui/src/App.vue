@@ -1,5 +1,5 @@
 <template>
-  <Navbar />
+  <Navbar :cartCount="cartCount" @resetCartCount="resetCartCount" />
   <router-view v-if="products && categories"
                :baseUrl="baseUrl"
                :categories="categories"
@@ -19,7 +19,8 @@ export default {
     return {
       baseUrl: "http://localhost:8080/api/v1",
       products: null,
-      categories: null
+      categories: null,
+      cartCount: 0
     }
   },
   methods: {
@@ -37,33 +38,28 @@ export default {
           }).catch((err) => {
             console.log(err);
           });
+      if(this.token){
+        axios.get(`${this.baseUrl}/cart/list?token=${this.token}`)
+            .then(res => {
+              console.log(res.data);
+              const result = res.data;
+              this.cartCount = result.cartItems.length;
+            }).catch(err => console.log(err));
+      }
+    },
+    resetCartCount(){
+      this.cartCount = 0;
     }
   },
   mounted() {
+    this.token = localStorage.getItem("token");
     this.fetchData();
   }
 };
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+html {
+  overflow-y: scroll;
 }
 </style>

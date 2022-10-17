@@ -65,8 +65,8 @@
         </div>
       </li>
       <li class="nav-item mt-0">
-        <div id="cart">
-          <!--        <span id="nav-cart-count">{{  }}</span>-->
+        <div id="cart" style="position: relative">
+          <span id="nav-cart-count">{{cartCount}}</span>
           <router-link class="text-light" :to="{ name: 'CartView' }">
             <i class="fa fa-shopping-cart" style="font-size:36px"></i>
           </router-link>
@@ -80,8 +80,10 @@
 </template>
 
 <script>
+import swal from "sweetalert";
 export default {
   name : "NavbarView",
+  props: ["cartCount"],
   data() {
     return{
       token: null
@@ -91,6 +93,12 @@ export default {
     logOut(){
       localStorage.removeItem("token")
       this.token = null;
+      swal({
+        text: "You have just log out. See you later :)",
+        icon: "success"
+      });
+      this.$emit("resetCartCount");
+      this.$router.push({ name: "HomeView"});
     }
   },
   mounted() {
@@ -118,5 +126,18 @@ export default {
 }
 #cart {
   position: relative;
+}
+#nav-cart-count {
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  height: 15px;
+  width: 15px;
+  font-size: 15px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  margin-left: 10px;
 }
 </style>
