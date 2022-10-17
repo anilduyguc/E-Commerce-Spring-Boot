@@ -31,8 +31,11 @@
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbar-account" data-toggle="dropdown">Account</a>
         <div class="dropdown-menu" aria-labelledby="navbar-account">
-          <router-link  :to="{name: 'SignupView'}" class="dropdown-item">SignUp</router-link>
-          <router-link  :to="{name: 'SigninView'}" class="dropdown-item">SignIn</router-link>
+          <router-link v-if="token" :to="{name: 'WishlistView'}" class="dropdown-item">Wishlist</router-link>
+          <router-link v-if="!token" :to="{name: 'SignupView'}" class="dropdown-item">Sign up</router-link>
+          <router-link v-if="!token" :to="{name: 'SigninView'}" class="dropdown-item">Sign in</router-link>
+          <a v-if="token" href="#" class="dropdown-item" @click="logOut">Logout</a>
+
         </div>
       </li>
     </ul>
@@ -46,9 +49,19 @@
 export default {
   name : "NavbarView",
   data() {
+    return{
+      token: null
+    }
   },
   methods: {
+    logOut(){
+      localStorage.removeItem("token")
+      this.token = null;
+    }
   },
+  mounted() {
+    this.token = localStorage.getItem("token");
+  }
 }
 </script>
 

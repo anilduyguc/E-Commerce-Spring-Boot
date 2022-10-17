@@ -25,25 +25,52 @@
             <li>ASDS</li>
           </ul>
         </div>
+        <button id="wishlist-button" class="btn me-3 p-1 py-0" @click="addToWishlist">{{this.wishListString}}</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import swal from "sweetalert";
+import axios from "axios";
 export default {
   name: "ShowDetails",
   props: ["baseUrl", "products", "categories"],
   data(){
     return {
       product: {},
-      category: {}
+      category: {},
+      wishListString: "Add to Wishlist"
     }
   },
   mounted() {
     this.id = this.$route.params.id;
     this.product = this.products.find((product) => product.id == this.id);
     this.category = this.categories.find((category) => category.id == this.product.categoryId);
+    this.token = localStorage.getItem("token");
+  },
+  methods: {
+    addToWishlist(){
+      if(!this.token){
+        swal({
+          text: "Please login to add an item to wishlist",
+          icon: "error"
+        });
+        return;
+      }
+      axios.post(`${this.baseUrl}/wish-list/add?token=${this.token}`, {
+        id: this.product.id,
+      }).then((res) => {
+        if(res.status === 201){
+          this.wishListString = "Added to Wishlist";
+          swal({
+            text: "Added to Wishlist",
+            icon: "success"
+          });
+        }
+      }).catch((err) => console.log(err));
+    }
   }
 }
 </script>
@@ -51,5 +78,8 @@ export default {
 <style scoped>
   .category{
     font-weight: 400;
+  }
+  #wishlist-button{
+    background-color: #b9b9b9;
   }
 </style>
