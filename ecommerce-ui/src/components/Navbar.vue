@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <!--    Logo-->
     <router-link class="navbar-brand" :to="{name : 'HomeView'}">
-      <img id="logo" src="../assets/sb.jpeg" />
+      <img id="logo" src="../assets/sb.jpeg" style="max-height: 50px; max-width: 50px "/>
     </router-link>
 
     <!--    Burger Button-->
@@ -27,6 +27,32 @@
       </form>
 
     </div>
+    <ul class="navbar-nav ms-auto">
+        <li class="nav-item dropdown">
+          <a
+              class="nav-link text-light dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+          >
+            Browse
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <router-link class="dropdown-item" :to="{ name: 'HomeView' }"
+            >Home</router-link
+            >
+            <router-link class="dropdown-item" :to="{ name: 'AdminProduct' }"
+            >Product</router-link
+            >
+            <router-link class="dropdown-item" :to="{ name: 'Category' }"
+            >Category</router-link
+            >
+          </div>
+        </li>
+    </ul>
     <ul class="navbar-nav me-auto">
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbar-account" data-toggle="dropdown">Account</a>
@@ -36,6 +62,14 @@
           <router-link v-if="!token" :to="{name: 'SigninView'}" class="dropdown-item">Sign in</router-link>
           <a v-if="token" href="#" class="dropdown-item" @click="logOut">Logout</a>
 
+        </div>
+      </li>
+      <li class="nav-item mt-0">
+        <div id="cart">
+          <!--        <span id="nav-cart-count">{{  }}</span>-->
+          <router-link class="text-light" :to="{ name: 'CartView' }">
+            <i class="fa fa-shopping-cart" style="font-size:36px"></i>
+          </router-link>
         </div>
       </li>
     </ul>
@@ -81,5 +115,8 @@ export default {
   border-color: #febd69;
   border-top-right-radius: 2px;
   border-bottom-right-radius: 2px;
+}
+#cart {
+  position: relative;
 }
 </style>
