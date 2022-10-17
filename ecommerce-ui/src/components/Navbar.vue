@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <!--    Logo-->
-    <router-link class="navbar-brand" :to="{name : 'home'}">
+    <router-link class="navbar-brand" :to="{name : 'HomeView'}">
       <img id="logo" src="../assets/sb.jpeg" />
     </router-link>
 
@@ -32,7 +32,7 @@
         <a class="nav-link dropdown-toggle" href="#" id="navbar-account" data-toggle="dropdown">Account</a>
         <div class="dropdown-menu" aria-labelledby="navbar-account">
           <router-link  :to="{name: 'SignupView'}" class="dropdown-item">SignUp</router-link>
-          <router-link  :to="{name: 'SignupView'}" class="dropdown-item">SignIn</router-link>
+          <router-link  :to="{name: 'SigninView'}" class="dropdown-item">SignIn</router-link>
         </div>
       </li>
     </ul>

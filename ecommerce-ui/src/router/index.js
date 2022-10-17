@@ -10,11 +10,12 @@ import EditProduct from "@/views/Product/EditProduct";
 import ShowDetails from "@/views/Product/ShowDetails";
 import ListProducts from "@/views/Category/ListProducts";
 import SignupView from "@/views/SignupView";
+import SigninView from "@/views/SigninView";
 
 const routes = [
   {
     path: '/',
-    name: 'home',
+    name: 'HomeView',
     component: HomeView
   },
   {
@@ -66,6 +67,11 @@ const routes = [
     path: '/signup',
     name: 'SignupView',
     component: SignupView
+  },
+  {
+    path: '/signin',
+    name: 'SigninView',
+    component: SigninView
   },
 
 ]
