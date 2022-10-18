@@ -41,7 +41,7 @@ export default {
       if(this.token){
         axios.get(`${this.baseUrl}/cart/list?token=${this.token}`)
             .then(res => {
-              console.log(res.data);
+
               const result = res.data;
               this.cartCount = result.cartItems.length;
             }).catch(err => console.log(err));

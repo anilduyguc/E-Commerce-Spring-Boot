@@ -50,8 +50,7 @@ export default {
       }
        const baseUrl = "http://localhost:8080/api/v1";
       axios.post(`${baseUrl}/category/create`, newCategory)
-          .then((response) => {
-            console.log(response);
+          .then(() => {
             sweetalert({
               text: "Category added successfully",
               icon: 'success'

@@ -26,7 +26,6 @@ export default {
     fetchWishlist(){
       axios.get(`${this.baseUrl}/wish-list/${this.token}`)
           .then(res => {
-            console.log(res.data);
             this.products=res.data;
           }).catch(err => console.log(err));
     }

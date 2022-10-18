@@ -44,7 +44,6 @@ export default {
   methods: {
     async editCategory(){
       delete this.category["products"]
-      console.log('category', this.category);
       await axios.post(`${this.baseUrl}/category/update/${this.id}`, this.category)
           .then(() => {
             this.$emit("fetchData");

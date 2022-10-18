@@ -87,7 +87,6 @@ export default {
       await axios
           .post(`${this.baseUrl}/user/signin`, user)
           .then((res) => {
-            console.log(res.data);
             localStorage.setItem("token", res.data.token);
             this.$emit("fetchData");
             this.$router.push({ name: "HomeView" });

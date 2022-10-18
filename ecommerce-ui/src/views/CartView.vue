@@ -35,7 +35,7 @@
       </div>
       <div class="total-cost pt-2 text-right">
         <h5>Total : $ {{ totalCost.toFixed(2) }}</h5>
-        <button type="button" class="btn btn-primary confirm">Confirm Order</button>
+        <button type="button" class="btn btn-primary confirm" @click="checkOut">Confirm Order</button>
       </div>
   </div>
 
@@ -58,7 +58,6 @@ export default {
     listCartItems(){
       axios.get(`${this.baseUrl}/cart/list?token=${this.token}`)
           .then(res => {
-            console.log(res.data);
             const result = res.data;
             this.cartItems = result.cartItems;
             this.totalCost = result.totalCost;
@@ -71,8 +70,10 @@ export default {
               this.$router.go(0);
             }
           }).catch(err => console.log(err));
+    },
+    checkOut(){
+      this.$router.push({name: 'CheckoutView'})
     }
-
   },
   mounted() {
     this.token = localStorage.getItem("token");
